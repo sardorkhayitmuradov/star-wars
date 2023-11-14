@@ -1,0 +1,25 @@
+<!-- <loading *ngIf="isLoading">{{ isLoading }}</loading>
+
+<div class="jumbotron text-center">
+  <h4>'isLoading' = {{isLoading}}</h4>
+</div>
+
+<button class="btn btn-block btn-success mb-3" (click)="isLoading = !isLoading">
+  infinite
+</button>
+
+<button class="btn btn-block btn-warning mb-3" (click)="load()">
+  with Timeout 2 seconds
+</button>
+
+<button class="btn btn-block btn-primary mb-3" (click)="start()">
+  start time consuming function - doesn't work
+</button> -->
+
+
+<div *ngFor="let film of (data$ | async)?.results" class="flex items-center flex-col">
+  <div class="text-white">
+    {{film.title}}
+    {{film.producer}}
+  </div>
+</div>

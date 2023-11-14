@@ -1,0 +1,10 @@
+<h1 class="text-white">People</h1>
+
+
+<div *ngFor="let person of (data$ | async)?.results" class="flex items-center flex-col">
+    <div class="text-white">
+        People
+        {{person.name}}
+        {{person.gender}}
+    </div>
+</div>

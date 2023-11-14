@@ -1,0 +1,10 @@
+<h1 class="text-white">Planets</h1>
+
+
+<div *ngFor="let planet of (data$ | async)?.results" class="flex items-center flex-col">
+    <div class="text-white">
+        Planet
+        {{planet.name}}
+        {{planet.population}}
+    </div>
+</div>
