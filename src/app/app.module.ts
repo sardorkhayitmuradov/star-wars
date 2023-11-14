@@ -5,6 +5,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgxsModule } from '@ngxs/store';
+import { HttpClientModule } from '@angular/common/http';
+import { ENDPOINT } from './shared/services/base.service';
+import { environment } from './environments/environment';
+import { FilmsState } from './shared/store/films/films.state';
 
 @NgModule({
   declarations: [AppComponent],
@@ -12,8 +17,13 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AppRoutingModule,
     BrowserModule,
     FormsModule,
+    HttpClientModule,
     BrowserAnimationsModule,
+    NgxsModule.forRoot([FilmsState], {
+      // developmentMode: !environment.production
+    }),
   ],
+  providers: [{ provide: ENDPOINT, useValue: environment.endpoint }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
