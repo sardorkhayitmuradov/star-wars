@@ -9,6 +9,9 @@ import { PeopleService } from '../../../modules/people/service/people.service';
 @State<BaseResponse<PeopleModel[]>>({
   name: 'people',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })
@@ -34,7 +37,7 @@ export class PeopleState {
     ctx: StateContext<BaseResponse<PeopleModel[]>>,
     action: PeopleAction
   ) {
-    return this.$people.getAll().pipe(
+    return this.$people.getByPagination(action.pageIndex).pipe(
       tap((people) => {
         const state = ctx.getState();
         ctx.setState({ ...state, ...people });

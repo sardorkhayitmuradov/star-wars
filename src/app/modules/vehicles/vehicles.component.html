@@ -1,1 +1,53 @@
-<p>vehicles works!</p>
+<div class="relative min-h-[80vh] w-full">
+    <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [type]="'ball-spin-clockwise'"
+        [fullScreen]="false">
+        <p class="text-white"> Loading... </p>
+    </ngx-spinner>
+
+    <div class="mx-auto container">
+        <ul class="relative grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-6 py-10">
+            <li *ngFor="let vehicle of (data$ | async)?.results">
+                <div
+                    class="entity-container entity-type-articlepage ratio-16x9 links-out corners-default show-details card-display">
+                    <div class="entity-mask rounded-tl-lg rounded-tr-lg">
+                        <a href=" https://www.starwars.com/news/minecraft-star-wars-path-of-the-jedi"
+                            class="rounded-tl-lg rounded-tr-lg">
+                            <div class="articlepage-box entity-box thumb-border rounded-tl-lg rounded-tr-lg">
+                                <div class="aspect rounded-tl-lg rounded-tr-lg">
+                                    <img class="thumb" alt="Minecraft Star Wars: Path of the Jedi DLC Now Available"
+                                        data-src="https://lumiere-a.akamaihd.net/v1/images/sw-minecraft-dlc-key-art_article-feature_8d2899e9.jpeg?region=0%2C0%2C1600%2C900"
+                                        data-legacy="true"
+                                        src="https://lumiere-a.akamaihd.net/v1/images/sw-minecraft-dlc-key-art_article-feature_8d2899e9.jpeg?region=0%2C0%2C1600%2C900">
+                                </div>
+                            </div>
+                        </a>
+                        <div class="entity-details text-left visible">
+                            <div class="decal-contain">
+                                <div class="decal"></div>
+                            </div> <a href="https://www.starwars.com/news/minecraft-star-wars-path-of-the-jedi"
+                                class="entity-link title-link show-details"
+                                data-title="Minecraft Star Wars: Path of the Jedi DLC Now Available" tabindex="-1">
+                                <div class="flex items-center gap-x-2">
+                                    <span class="title no_focus">Name :</span>
+                                    <span class="title no_focus">{{vehicle.name || 'Unknown'}}</span>
+                                </div>
+                                <div class="flex items-center gap-x-2">
+                                    <h2 class="text-base text-light">Model:
+                                    </h2>
+                                    <p class="text-base text-light">{{vehicle.model}}</p>
+                                </div>
+                            </a>
+                            <div class="notch-contain"></div>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        </ul>
+    
+        <div class="py-10" *ngIf="length != 0">
+            <mat-paginator (page)="handlePageEvent($event)" [hidePageSize]="true" [length]="length"
+                [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+            </mat-paginator>
+        </div>
+    </div>
+</div>

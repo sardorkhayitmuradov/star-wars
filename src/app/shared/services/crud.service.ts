@@ -39,9 +39,9 @@ export abstract class CRUDService<TResponse> {
    *
    * @param page pageSize
    */
-  getByPagination(page: number, pageSize: number) {
+  getByPagination(page: number) {
     return this._base.get<BaseResponse<TResponse[]>>(
-      `${this.url}/pagination?page=${page}&pageSize=${pageSize}`
+      `${this.url}?page=${page}`
     );
   }
 }

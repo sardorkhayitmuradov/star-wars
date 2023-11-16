@@ -1,0 +1,19 @@
+li:before {
+  content: "";
+  position: absolute;
+  width: 1px;
+  height: 16px;
+  background-color: white;
+  top: 3px;
+  right: 6px;
+}
+
+li a {
+  font-size: 0.75rem;
+  line-height: 1rem;
+  font-weight: 500;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  position: relative;
+}

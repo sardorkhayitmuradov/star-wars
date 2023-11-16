@@ -7,38 +7,32 @@ import { FilmsModel } from '../../core/interfaces/films.interface';
 import { BaseResponse } from '../../core/interfaces/base.interface';
 import { Observable } from 'rxjs';
 import { FilmsState } from '../../shared/store/films/films.state';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-films',
   templateUrl: './films.component.html',
   styleUrls: ['./films.component.scss'],
-  providers: [DestroyService],
+  providers: [DestroyService, NgxSpinnerService],
 })
 export class FilmsComponent {
   @Select(FilmsState.films) data$!: Observable<BaseResponse<FilmsModel[]>>;
-  //Loader spinner
-  // isLoading = false;
-
-  // load() : void {
-  //   this.isLoading = true;
-  //   setTimeout( () => this.isLoading = false, 2000 );
-  // }
-
-  // async wait(ms: number): Promise<void> {
-  // 	return new Promise<void>( resolve => setTimeout( resolve, ms) );
-  // }
-
-  // start() {
-  //   this.isLoading = true;
-  // 	this.wait(2000).then( () => this.isLoading = false );
-  // }
 
   constructor(
     $store: Store,
     private destroyer: DestroyService,
     private router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private spinner: NgxSpinnerService
   ) {
     $store.dispatch(new FilmsAction());
+    this.loadData();
+  }
+
+  loadData() {
+    this.data$.subscribe((w) => {
+      console.log(w);
+      w.results.length > 0 ? this.spinner.hide() : this.spinner.show();
+    });
   }
 }

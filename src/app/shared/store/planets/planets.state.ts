@@ -9,6 +9,9 @@ import { PlanetsService } from '../../../modules/planets/service/planets.service
 @State<BaseResponse<PlanetsModel[]>>({
   name: 'planets',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })
@@ -34,7 +37,7 @@ export class PlanetsState {
     ctx: StateContext<BaseResponse<PlanetsModel[]>>,
     action: PlanetsAction
   ) {
-    return this.$planets.getAll().pipe(
+    return this.$planets.getByPagination(action.pageIndex).pipe(
       tap((planets) => {
         const state = ctx.getState();
         ctx.setState({ ...state, ...planets });

@@ -15,9 +15,11 @@ import { PlanetsState } from './shared/store/planets/planets.state';
 import { SpeciesState } from './shared/store/species/species.state';
 import { StarshipsState } from './shared/store/starships/starships.state';
 import { VehiclesState } from './shared/store/vehicles/vehicles.state';
+import { FooterComponent } from './components/footer/footer.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, FooterComponent, HeaderComponent],
   imports: [
     AppRoutingModule,
     BrowserModule,

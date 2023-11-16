@@ -9,6 +9,9 @@ import { StarshipsService } from '../../../modules/starships/service/starships.s
 @State<BaseResponse<StarshipsModel[]>>({
   name: 'starships',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })
@@ -34,7 +37,7 @@ export class StarshipsState {
     ctx: StateContext<BaseResponse<StarshipsModel[]>>,
     action: StarshipsAction
   ) {
-    return this.$starships.getAll().pipe(
+    return this.$starships.getByPagination(action.pageIndex).pipe(
       tap((starships) => {
         const state = ctx.getState();
         ctx.setState({ ...state, ...starships });

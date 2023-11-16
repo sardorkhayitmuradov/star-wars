@@ -25,7 +25,7 @@ export abstract class Grid<TResponse> {
   /**
    *
    */
-  getByPagination(page: number, pageSize: number) {
-    this.data$ = this.$data.getByPagination(page, pageSize);
+  getByPagination(page: number) {
+    this.data$ = this.$data.getByPagination(page);
   }
 }

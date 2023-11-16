@@ -9,6 +9,9 @@ import { SpeciesService } from '../../../modules/species/service/species.service
 @State<BaseResponse<SpeciesModel[]>>({
   name: 'species',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })
@@ -34,7 +37,7 @@ export class SpeciesState {
     ctx: StateContext<BaseResponse<SpeciesModel[]>>,
     action: SpecieseAction
   ) {
-    return this.$species.getAll().pipe(
+    return this.$species.getByPagination(action.pageIndex).pipe(
       tap((species) => {
         const state = ctx.getState();
         ctx.setState({ ...state, ...species });

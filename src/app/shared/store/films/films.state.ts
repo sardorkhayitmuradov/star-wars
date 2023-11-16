@@ -9,6 +9,9 @@ import { tap } from 'rxjs';
 @State<BaseResponse<FilmsModel[]>>({
   name: 'films',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })

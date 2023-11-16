@@ -1,10 +1,80 @@
-<h1 class="text-white">People</h1>
+<div class="relative min-h-[80vh] w-full">
+  <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" [type]="'ball-spin-clockwise'"
+    [fullScreen]="false">
+    <p class="text-white"> Loading... </p>
+  </ngx-spinner>
 
+  <div class="mx-auto container py-10">
+    <ul class="relative grid lg:grid-cols-3 xl:grid-cols-4 md:grid-cols-2 gap-6">
+      <li *ngFor="let person of (data$ | async)?.results">
+        <div
+          class="entity-container entity-type-articlepage ratio-16x9 links-out corners-default show-details card-display">
+          <div class="entity-mask rounded-tl-lg rounded-tr-lg">
+            <a href="#"
+              class="rounded-tl-lg rounded-tr-lg">
+              <div class="articlepage-box entity-box thumb-border rounded-tl-lg rounded-tr-lg bg-[#1d1e1f]">
+                <div class="aspect rounded-tl-lg rounded-tr-lg">
+                  <div class="articlepage-box entity-box thumb-border rounded-tl-lg rounded-tr-lg p-5">
+                    <div class="aspect rounded-tl-lg rounded-tr-lg">
+                      <div class="grid grid-cols-2 grid-rows-3 text-center">
+                        <div class="flex items-start gap-x-2">
+                          <h2 class="text-base text-light">Hair color :
+                          </h2>
+                          <p class="text-light text-center text-sm">{{person.hair_color}}</p>
+                        </div>
+                        <div class="flex items-start gap-x-2">
+                          <h2 class="text-base text-light">Height :
+                          </h2>
+                          <p class="text-light text-center text-sm">{{person.height}}</p>
+                        </div>
+                        <div class="flex items-start gap-x-2">
+                          <h2 class="text-base text-light">Mass :
+                          </h2>
+                          <p class="text-light text-center text-sm">{{person.mass}}</p>
+                        </div>
+                        <div class="flex items-start gap-x-2">
+                          <h2 class="text-base text-light">Skin color :
+                          </h2>
+                          <p class="text-light text-center text-sm">{{person.skin_color}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <div class="entity-details text-left visible">
+              <div class="decal-contain">
+                <div class="decal"></div>
+              </div> <a href="https://www.starwars.com/news/minecraft-star-wars-path-of-the-jedi"
+                class="entity-link title-link show-details"
+                data-title="Minecraft Star Wars: Path of the Jedi DLC Now Available" tabindex="-1">
+                <h3 class="title no_focus">
+                  <span> {{person.name}}</span>
+                </h3>
+                <div class="flex items-center gap-x-2">
+                  <h2 class="text-base text-light">Birth year:
+                  </h2>
+                  <p class="text-base text-light">{{person.birth_year}}</p>
+                </div>
+                <div class="flex items-center gap-x-2">
+                  <h2 class="text-base text-light">Gender :
+                  </h2>
+                  <p class="text-base text-light">{{person.gender}}</p>
+                </div>
+              </a>
+              <div class="notch-contain"></div>
+            </div>
+          </div>
+        </div>
+      </li>
+    </ul>
 
-<div *ngFor="let person of (data$ | async)?.results" class="flex items-center flex-col">
-    <div class="text-white">
-        People
-        {{person.name}}
-        {{person.gender}}
+    <div class="py-10" *ngIf="length != 0">
+      <mat-paginator (page)="handlePageEvent($event)" [hidePageSize]="true" [length]="length"
+        [pageSizeOptions]="pageSizeOptions" aria-label="Select page">
+      </mat-paginator>
     </div>
+  </div>
+
 </div>

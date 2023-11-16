@@ -1,0 +1,33 @@
+h1 {
+  font-size: 55px;
+  letter-spacing: 5px;
+}
+
+.h3 {
+  font-size: 30px;
+  letter-spacing: 5px;
+}
+
+img {
+  border: 0;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
+
+div.header-img {
+  background-image: url("/assets/images/home_background.jpeg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
+  position: relative;
+  color: #ffffff;
+  text-align: center;
+  height: 85vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

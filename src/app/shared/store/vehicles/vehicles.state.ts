@@ -9,6 +9,9 @@ import { VehiclesService } from '../../../modules/vehicles/service/vehicles.serv
 @State<BaseResponse<VehiclesModel[]>>({
   name: 'vehicles',
   defaults: {
+    count: 0,
+    next: '',
+    previous: '',
     results: [],
   },
 })
@@ -34,7 +37,7 @@ export class VehiclesState {
     ctx: StateContext<BaseResponse<VehiclesModel[]>>,
     action: VehiclesAction
   ) {
-    return this.$vehicles.getAll().pipe(
+    return this.$vehicles.getByPagination(action.pageIndex).pipe(
       tap((vehicles) => {
         const state = ctx.getState();
         ctx.setState({ ...state, ...vehicles });
